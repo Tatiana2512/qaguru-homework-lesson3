@@ -19,7 +19,7 @@ public class FormSteps {
         $("#userEmail").scrollIntoView(true).setValue(email);//email
     }
 
-    public static void setGender(String gender) {
+    public static void setGender(String gender) { //need to refactor this;same issue as setBirthDateHard1
         switch (gender) {
             case ("Male"):
                 $("#genterWrapper").$(byText(gender)).scrollIntoView(true).click();
@@ -48,7 +48,7 @@ public class FormSteps {
     public static void setBirthDateHard1(String date) {
         String[] data = date.split("\\s");//parse date
         $("#dateOfBirthInput").click();
-        $x("//select[@class='react-datepicker__month-select']//option[contains(text(),data[1])]");
+        $x("//select[@class='react-datepicker__month-select']//option[contains(text(),data[1])]");// can not recognize value from data[1], dont know why
         $x("//select[@class='react-datepicker__year-select']//option[contains(text(),data[2])]");
         $x("//div[@class='react-datepicker__week']//div[contains(text(),data[0]]");
     }
@@ -57,7 +57,7 @@ public class FormSteps {
         $("#subjectsInput").scrollIntoView(true).setValue(subj).pressEnter();//mobile
     }
 
-    public static void setHobby(String hobby) {
+    public static void setHobby(String hobby) { //need to refactor this;same issue as setBirthDateHard1
         switch (hobby) {
             case ("Sports"):
                 $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
