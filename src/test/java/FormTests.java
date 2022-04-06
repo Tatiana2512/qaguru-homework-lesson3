@@ -23,9 +23,15 @@ public class FormTests {
         FormSteps.fillTheForm();
         $x("//div[@class='table-responsive']").shouldBe(Condition.visible);
         $(".table-responsive").shouldHave(text("Student Name " + TestData.FIRSTNAME + " " + TestData.LASTNAME),
-                text("Mobile " + TestData.MOBILE), text("Picture img.jpeg"), text("Student Email " + TestData.EMAIL),
-                text("Gender " + TestData.GENDER), text("Date of Birth 03 October,1978"), text("Subjects " + TestData.SUBJECT),
-                text("Hobbies " + TestData.HOBBY), text("Address " + TestData.ADDRESS), text("State and City " + TestData.STATE + " " + TestData.CITY));
+                text("Mobile " + TestData.MOBILE),
+                text("Picture img.jpeg"),
+                text("Student Email " + TestData.EMAIL),
+                text("Gender " + TestData.GENDER),
+                text("Date of Birth 03 October,1978"),
+                text("Subjects " + TestData.SUBJECT),
+                text("Hobbies " + TestData.HOBBY),
+                text("Address " + TestData.ADDRESS),
+                text("State and City " + TestData.STATE + " " + TestData.CITY));
         $("#closeLargeModal").scrollIntoView(true).click();
     }
 }
