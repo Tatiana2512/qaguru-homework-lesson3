@@ -1,6 +1,8 @@
 
+import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.Keys;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -45,36 +47,40 @@ public class FormSteps {
         $x("//input[@id='dateOfBirthInput']").scrollIntoView(true).setValue(date).pressEnter();//set new date
     }
 
-    public static void setBirthDateHard1(String date) {
+    public static void setBirthDateHard(String date) {
         String[] data = date.split("\\s");//parse date
         $("#dateOfBirthInput").click();
-        $x("//select[@class='react-datepicker__month-select']//option[contains(text(),data[1])]");// can not recognize value from data[1], dont know why
-        $x("//select[@class='react-datepicker__year-select']//option[contains(text(),data[2])]");
-        $x("//div[@class='react-datepicker__week']//div[contains(text(),data[0]]");
+        $x("//select[@class='react-datepicker__month-select']//option[contains(text(),'"+data[1]+"')]").click();
+        $x("//select[@class='react-datepicker__year-select']//option[contains(text(),'"+data[2]+"')]").click();
+        $x("//div[@class='react-datepicker__week']//div[contains(text(),'"+data[0]+"')]").click();
     }
 
     public static void setSubject(String subj) {
         $("#subjectsInput").scrollIntoView(true).setValue(subj).pressEnter();//mobile
     }
 
-    public static void setHobby(String hobby) { //need to refactor this;same issue as setBirthDateHard1
-        switch (hobby) {
-            case ("Sports"):
-                $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
-                break;
-            case ("Reading"):
-                $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
-                break;
-            case ("Music"):
-                $("#hobbiesWrapper").$(byText(hobby)).scrollIntoView(true).click();
-                break;
-            default:
-                break;
+            public static void setHobby(String hobby) {
+            ElementsCollection hobbies = $$x("//input[@type='checkbox']");
+            System.out.println(hobbies.size());
+            hobbies.shouldHave(size(3));
+            switch (hobby) {
+                case ("Sports"):
+                    hobbies.get(0).parent().click();
+                    break;
+                case ("Reading"):
+                    hobbies.get(1).parent().click();
+                    break;
+                case ("Music"):
+                    hobbies.get(2).parent().click();
+                    break;
+                default:
+                    break;
+            }
         }
-    }
+
 
     public static void loadPicture(String path) {
-        $x("//input[@type='file']").scrollIntoView(true).setValue(path);//troubles with relative path
+        $x("//input[@type='file']").scrollIntoView(true).uploadFromClasspath(path);
 
     }
 
@@ -100,7 +106,7 @@ public class FormSteps {
         setEMail(TestData.EMAIL);
         setGender(TestData.GENDER);
         setMobile(TestData.MOBILE);
-        setBirthDateSimple(TestData.BIRTHDATE);
+        setBirthDateHard(TestData.BIRTHDATE);
         setSubject(TestData.SUBJECT);
         setHobby(TestData.HOBBY);
         loadPicture(TestData.PICTURE);
