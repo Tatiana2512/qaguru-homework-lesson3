@@ -12,7 +12,7 @@ public class FormTests {
     static void setUp() {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "800x800";
+        Configuration.browserSize = "1980x800";
     }
 
     @Test
