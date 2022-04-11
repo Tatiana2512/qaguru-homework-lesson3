@@ -12,26 +12,27 @@ public class FormTests {
     static void setUp() {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1980x800";
+        Configuration.browserSize = "800x800";
     }
 
     @Test
     public void fillTheFormTest() {
+        TestDataFaker student = new TestDataFaker();
         open("/automation-practice-form");
         //Selenide.executeJavaScript("document.body.style.zoom='80%'"); перестад работать click() после этой команды
         executeJavaScript("document.querySelector(\"footer\").hidden = 'true';document.querySelector(\"#fixedban\").hidden = 'true'");  // -удаление футера
-        FormSteps.fillTheForm();
+        FormSteps.fillTheForm(student);
         $x("//div[@class='table-responsive']").shouldBe(Condition.visible);
-        $(".table-responsive").shouldHave(text("Student Name " + TestData.FIRSTNAME + " " + TestData.LASTNAME),
-                text("Mobile " + TestData.MOBILE),
+        $(".table-responsive").shouldHave(text("Student Name " + student.FIRSTNAME + " " + student.LASTNAME),
+                text("Mobile " + student.MOBILE),
                 text("Picture img.jpeg"),
-                text("Student Email " + TestData.EMAIL),
-                text("Gender " + TestData.GENDER),
+                text("Student Email " + student.EMAIL),
+                text("Gender " + student.GENDER),
                 text("Date of Birth 03 October,1978"),
-                text("Subjects " + TestData.SUBJECT),
-                text("Hobbies " + TestData.HOBBY),
-                text("Address " + TestData.ADDRESS),
-                text("State and City " + TestData.STATE + " " + TestData.CITY));
+                text("Subjects " + student.SUBJECT),
+                text("Hobbies " + student.HOBBY),
+                text("Address " + student.ADDRESS),
+                text("State and City " + student.STATE + " " + student.CITY));
         $("#closeLargeModal").scrollIntoView(true).click();
     }
 }

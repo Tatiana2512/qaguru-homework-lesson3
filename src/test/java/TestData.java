@@ -22,5 +22,5 @@ public class TestData {
 
     public static final String CITY = "Jaiselmer";
 
-    public static final String BIRTHDATE = "3 October 1978";
+    public static final String BIRTHDATE = "03 October 1978";
 }

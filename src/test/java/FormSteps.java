@@ -52,7 +52,7 @@ public class FormSteps {
         $("#dateOfBirthInput").click();
         $x("//select[@class='react-datepicker__month-select']//option[contains(text(),'"+data[1]+"')]").click();
         $x("//select[@class='react-datepicker__year-select']//option[contains(text(),'"+data[2]+"')]").click();
-        $x("//div[@class='react-datepicker__week']//div[contains(text(),'"+data[0]+"')]").click();
+        $x("//div[@class='react-datepicker__week']//div[@class='react-datepicker__day react-datepicker__day--0"+data[0]+"']").click();
     }
 
     public static void setSubject(String subj) {
@@ -100,19 +100,19 @@ public class FormSteps {
         $(byText("Submit")).scrollIntoView(true).click();
     }
 
-    public static void fillTheForm() {
-        setFirstName(TestData.FIRSTNAME);
-        setLastName(TestData.LASTNAME);
-        setEMail(TestData.EMAIL);
-        setGender(TestData.GENDER);
-        setMobile(TestData.MOBILE);
-        setBirthDateHard(TestData.BIRTHDATE);
-        setSubject(TestData.SUBJECT);
-        setHobby(TestData.HOBBY);
-        loadPicture(TestData.PICTURE);
-        setAddress(TestData.ADDRESS);
-        setState(TestData.STATE);
-        setCity(TestData.CITY);
+    public static void fillTheForm(TestDataFaker test) {
+        setFirstName(test.FIRSTNAME);
+        setLastName(test.LASTNAME);
+        setEMail(test.EMAIL);
+       setGender(test.GENDER);
+        setMobile(test.MOBILE);
+        //setBirthDateHard(test.BIRTHDATE);
+        setSubject(test.SUBJECT);
+        setHobby(test.HOBBY);
+        loadPicture(test.PICTURE);
+        setAddress(test.ADDRESS);
+        setState(test.STATE);
+        setCity(test.CITY);
         submit();
     }
 }
