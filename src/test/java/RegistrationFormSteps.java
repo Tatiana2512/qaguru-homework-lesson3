@@ -1,15 +1,14 @@
 
-import Pages.RegistrationFormPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.Keys;
+import test_data.TestDataFaker;
 
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,19 +16,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationFormSteps {
 
-    public static void setFirstName(String first) {
+    public void setFirstName(String first) {
         $("#firstName").scrollIntoView(true).setValue(first);//1st name
     }
 
-    public static void setLastName(String last) {
+    public void setLastName(String last) {
         $("#lastName").scrollIntoView(true).setValue(last);//last name
     }
 
-    public static void setEMail(String email) {
+    public void setEMail(String email) {
         $("#userEmail").scrollIntoView(true).setValue(email);//email
     }
 
-    public static void setGender(String gender) { //need to refactor this;same issue as setBirthDateHard1
+    public void setGender(String gender) { //need to refactor this;same issue as setBirthDateHard1
         switch (gender) {
             case ("Male"):
                 $("#genterWrapper").$(byText(gender)).scrollIntoView(true).click();
@@ -45,17 +44,17 @@ public class RegistrationFormSteps {
         }
     }
 
-    public static void setMobile(String mobile) {
+    public void setMobile(String mobile) {
         $("#userNumber").scrollIntoView(true).setValue(mobile);//mobile
     }
 
-    public static void setBirthDateSimple(String date) {
+    public void setBirthDateSimple(String date) {
         $("#dateOfBirthInput").scrollIntoView(true).sendKeys(Keys.CONTROL + "A");//date - select all
         $("#dateOfBirthInput").scrollIntoView(true).sendKeys(Keys.SPACE);//clear field by press spacebar
         $x("//input[@id='dateOfBirthInput']").scrollIntoView(true).setValue(date).pressEnter();//set new date
     }
 
-    public static void setBirthDateHard(Date date) {
+    public void setBirthDateHard(Date date) {
         String[] data = date.toString().split("\\s");//parse date
         $("#dateOfBirthInput").click();
         $x("//select[@class='react-datepicker__month-select']//option[contains(text(),'" + data[1] + "')]").click();
@@ -63,7 +62,7 @@ public class RegistrationFormSteps {
         $x("//div[(contains(@class,'react-datepicker__day react-datepicker__day--0" + data[2] + "')) and not(contains(@class,'day--outside-month'))]").click();
     }
 
-    public static String birthDataToAssert(Date date) {
+    public String birthDataToAssert(Date date) {
         String[] data = date.toString().split("\\s");
         String day = data[2];
         String month = Month.of(1 + date.getMonth()).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
@@ -71,14 +70,12 @@ public class RegistrationFormSteps {
         return (day + " " + month + "," + year);
     }
 
-    public static void setSubject(String subj) {
+    public void setSubject(String subj) {
         $("#subjectsInput").scrollIntoView(true).setValue(subj).pressEnter();//mobile
     }
 
-    public static void setHobby(String hobby) {
+    public void setHobby(String hobby) {
         ElementsCollection hobbies = $$x("//input[@type='checkbox']");
-        System.out.println(hobbies.size());
-        hobbies.shouldHave(size(3));
         switch (hobby) {
             case ("Sports"):
                 hobbies.get(0).parent().click();
@@ -95,28 +92,28 @@ public class RegistrationFormSteps {
     }
 
 
-    public static void loadPicture(String path) {
+    public void loadPicture(String path) {
         $x("//input[@type='file']").scrollIntoView(true).uploadFromClasspath(path);
 
     }
 
-    public static void setAddress(String address) {
+    public void setAddress(String address) {
         $x("//textarea").scrollIntoView(true).setValue(address);
     }
 
-    public static void setState(String state) {
+    public void setState(String state) {
         $x("//input[@id='react-select-3-input']").scrollIntoView(true).setValue(state).pressEnter();//set state
     }
 
-    public static void setCity(String city) {
+    public void setCity(String city) {
         $x("//input[@id='react-select-4-input']").scrollIntoView(true).setValue(city).pressEnter();//set city
     }
 
-    public static void submit() {
+    public void submit() {
         $(byText("Submit")).scrollIntoView(true).click();
     }
 
-    public static void fillTheForm(TestDataFaker test) {
+    public void toFillTheForm(TestDataFaker test) {
         setFirstName(test.FIRSTNAME);
         setLastName(test.LASTNAME);
         setEMail(test.EMAIL);
@@ -132,7 +129,7 @@ public class RegistrationFormSteps {
         submit();
     }
 
-    public static void checkTheForm(TestDataFaker test){
+    public void toCheckTheForm(TestDataFaker test){
         $(".table-responsive").shouldBe(Condition.visible)
                 .shouldHave(text("Student Name " + test.FIRSTNAME + " " + test.LASTNAME),
                         text("Mobile " + test.MOBILE),

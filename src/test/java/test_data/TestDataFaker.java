@@ -1,6 +1,9 @@
+package test_data;
+
 import com.github.javafaker.Faker;
 
 import java.util.*;
+
 
 public class TestDataFaker {
 

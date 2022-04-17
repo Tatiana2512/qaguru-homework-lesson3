@@ -3,6 +3,7 @@ package Pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import test_data.TestDataFaker;
 
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -45,9 +46,8 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("document.querySelector(\"footer\").hidden = 'true';document.querySelector(\"#fixedban\").hidden = 'true'");  // -удаление футера
-
+        //$x("//h5").shouldHave(text("Student Registration Form"));
         return this;
     }
 
@@ -69,13 +69,13 @@ public class RegistrationFormPage {
     public RegistrationFormPage setGender(String gender) {
         switch (gender) {
             case ("Male"):
-                GenderRadio.get(0).scrollIntoView(true).click();
+                GenderRadio.get(0).parent().scrollIntoView(true).click();
                 break;
             case ("Female"):
-                GenderRadio.get(1).scrollIntoView(true).click();
+                GenderRadio.get(1).parent().scrollIntoView(true).click();
                 break;
             case ("Other"):
-                GenderRadio.get(2).scrollIntoView(true).click();
+                GenderRadio.get(2).parent().scrollIntoView(true).click();
                 break;
             default:
                 break;
@@ -98,7 +98,7 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public static String birthDataToAssert(Date date) {
+    public String birthDataToAssert(Date date) {
         String[] data = date.toString().split("\\s");
         String day = data[2];
         String month = Month.of(1 + date.getMonth()).getDisplayName(TextStyle.FULL, Locale.ENGLISH);
@@ -154,7 +154,7 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public void fillTheForm(TestDataFaker test) {
+    public RegistrationFormPage fillTheForm(TestDataFaker test) {
 
         setFirstName(test.FIRSTNAME);
         setLastName(test.LASTNAME);
@@ -170,6 +170,7 @@ public class RegistrationFormPage {
         setCity(test.CITY);
         submit();
 
+        return this;
 
     }
 
