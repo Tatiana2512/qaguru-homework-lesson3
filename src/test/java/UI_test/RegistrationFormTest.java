@@ -19,9 +19,7 @@ public class RegistrationFormTest {
     public void fillTheFormTest() {
         TestDataFaker student = new TestDataFaker();
         RegistrationFormPage page = new RegistrationFormPage();
-        page.openPage()
-                .fillTheForm(student)
-                .checkTheForm(student);
+        page.openPage().fillTheForm(student).checkTheForm(student);
 
            }
 }
