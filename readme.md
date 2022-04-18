@@ -1,5 +1,5 @@
-#QA.GURU School
-##Lesson 3. Page Object
+# QA.GURU School
+## Lesson 3. Page Object
 
 In this repo we have 1 autotest to check [this](https://demoqa.com/automation-practice-form) registration form. 
 
