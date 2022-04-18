@@ -7,7 +7,7 @@ Test data are generated via Java Faker for each test run
 ![Regustration Form Under Test](src/test/resources/form.png)
 
 
-Test do 2 steps in serial. First, fill the fields. 
+Test does 2 steps in serial. First, fill the fields. 
 ![1st_step](src/test/resources/1st.png)
 
 
