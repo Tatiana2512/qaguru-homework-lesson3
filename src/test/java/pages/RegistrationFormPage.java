@@ -1,9 +1,9 @@
-package Pages;
+package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import test_data.TestDataFaker;
+import data.TestDataFaker;
 
 import java.time.Month;
 import java.time.format.TextStyle;

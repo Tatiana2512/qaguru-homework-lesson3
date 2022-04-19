@@ -1,10 +1,10 @@
-package UI_test;
+package ui;
 
-import Pages.RegistrationFormPage;
 import com.codeborne.selenide.Configuration;
+import data.TestDataFaker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import test_data.TestDataFaker;
+import pages.RegistrationFormPage;
 
 public class RegistrationFormTest {
 
@@ -21,5 +21,6 @@ public class RegistrationFormTest {
         RegistrationFormPage page = new RegistrationFormPage();
         page.openPage().fillTheForm(student).checkTheForm(student);
 
-           }
+    }
+
 }

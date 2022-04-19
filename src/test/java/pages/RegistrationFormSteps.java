@@ -1,8 +1,9 @@
+package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import data.TestDataFaker;
 import org.openqa.selenium.Keys;
-import test_data.TestDataFaker;
 
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -129,14 +130,14 @@ public class RegistrationFormSteps {
         submit();
     }
 
-    public void toCheckTheForm(TestDataFaker test){
+    public void toCheckTheForm(TestDataFaker test) {
         $(".table-responsive").shouldBe(Condition.visible)
                 .shouldHave(text("Student Name " + test.FIRSTNAME + " " + test.LASTNAME),
                         text("Mobile " + test.MOBILE),
                         text("Picture img.jpeg"),
                         text("Student Email " + test.EMAIL),
                         text("Gender " + test.GENDER),
-                        text("Date of Birth "+birthDataToAssert(test.BIRTHDATE)),
+                        text("Date of Birth " + birthDataToAssert(test.BIRTHDATE)),
                         text("Subjects " + test.SUBJECT),
                         text("Hobbies " + test.HOBBY),
                         text("Address " + test.ADDRESS),

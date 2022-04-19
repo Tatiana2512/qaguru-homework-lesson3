@@ -1,6 +1,6 @@
 Header: Registration Form Autotest
 Priority: Critical
-Test Data: an instance of test_data.TestDataFaker class randomly generated
+Test Data: an instance of data.TestDataFaker class randomly generated
 
 Preconditions: open page https://demoqa.com/automation-practice-form
 
