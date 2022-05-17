@@ -49,10 +49,6 @@ public class Attachments {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        //JenkinsConfig configure = ConfigFactory.create(JenkinsConfig.class);
-
-
-        //String.format("https://%s/video",configure.remoteBrowserURL()).concat(sessionId+".mp4");
 
         //working,default
         String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
