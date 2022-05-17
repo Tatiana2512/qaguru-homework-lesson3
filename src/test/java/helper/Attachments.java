@@ -1,7 +1,10 @@
 package helper;
 
 import com.codeborne.selenide.Selenide;
+import data.config.JenkinsConfig;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -13,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
+@Tag("attachment")
 public class Attachments {
 
     @Attachment(value = "{attachName}", type = "text/plain")
@@ -45,7 +49,18 @@ public class Attachments {
     }
 
     public static URL getVideoUrl(String sessionId) {
+        //JenkinsConfig configure = ConfigFactory.create(JenkinsConfig.class);
+
+
+        //String.format("https://%s/video",configure.remoteBrowserURL()).concat(sessionId+".mp4");
+
+        //working,default
         String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+
+        //working, from Stacy
+//        String remoteVideoSource = System.getProperty("remoteVideoSource", "https://selenoid.autotests.cloud/video");
+//        String videoUrl = remoteVideoSource + sessionId + ".mp4";
+
 
         try {
             return new URL(videoUrl);

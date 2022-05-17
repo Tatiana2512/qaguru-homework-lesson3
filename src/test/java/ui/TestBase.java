@@ -17,11 +17,10 @@ public class TestBase {
     static void setUp() {
         JenkinsConfig config = ConfigFactory.create(JenkinsConfig.class);
 
-        String remote = "https://"+config.login()+":"+config.password()+"@"+config.remoteBrowserURL()+"/wd/hub";
-
         Configuration.baseUrl = config.baseURL();
-        Configuration.browserSize = config.remoteBrowserSize();
-        Configuration.remote = remote;
+        Configuration.browserSize = System.getProperty("browserSize", config.remoteBrowserSize());
+        Configuration.remote = System.getProperty("remoteUrl", String.format("https://%s:%s@%s/wd/hub", config.login(), config.password(), config.remoteBrowserURL()));
+        Configuration.browser = System.getProperty("browser", "opera");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);

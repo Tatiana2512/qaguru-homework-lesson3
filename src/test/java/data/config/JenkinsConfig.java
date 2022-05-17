@@ -2,7 +2,7 @@ package data.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:configParameters.properties")
+@Config.Sources("classpath:config/configParameters.properties")
 public interface JenkinsConfig extends Config {
 
 
@@ -12,4 +12,5 @@ public interface JenkinsConfig extends Config {
     String remoteBrowserSize();
     String remoteBrowserURL();
     String remoteConfig();
+    String selenoidRemote();
 }
